@@ -1,5 +1,5 @@
 function filterSkillsByCategory(skills,category) {
-    return category === "All" ? skills : skills.filter(skill => skill.category === category)
+    return category.toLowerCase() === "all" ? skills : skills.filter(skill => skill.category.toLowerCase() === category.toLowerCase())
 }
 
 
