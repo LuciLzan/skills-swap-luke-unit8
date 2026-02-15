@@ -1,3 +1,6 @@
+const { filterSkillsByCategory } = require("../skillswap-functions.js");
+
+
 const skills = [
     { title: 'Python Tutoring', category: 'Programming', price: 20 },
     { title: 'Guitar Lessons', category: 'Music', price: 15 },
@@ -32,3 +35,4 @@ describe('Filter skills tests by category tests', () => {
     })
 
 })
+
