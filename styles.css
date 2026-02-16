@@ -157,6 +157,42 @@ header {
     color: #666;
 }
 
+/* Calculator section */
+.calculator {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.calculator-form input {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.calculator-form button {
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calculator-form button:hover {
+    background-color: #3b82f6;
+}
+
 /* Footer */
 footer {
     text-align: center;

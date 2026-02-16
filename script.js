@@ -28,4 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // Cost calculator logic
+    const rateInput = document.getElementById("rate");
+    const hoursInput = document.getElementById("hours");
+    const calcButton = document.getElementById("calculate-btn");
+    const resultDisplay = document.getElementById("total-result");
+
+    calcButton.addEventListener("click", () => {
+        const rate = parseFloat(rateInput.value);
+        const hours = parseFloat(hoursInput.value);
+
+        if (isNaN(rate) || isNaN(hours)) {
+            resultDisplay.textContent = "Please enter valid numbers.";
+            return;
+        }
+
+        const total = calculateTotalCost(rate, hours);
+        resultDisplay.textContent = `Total: $${total.toFixed(2)}`;
+    });
 });
