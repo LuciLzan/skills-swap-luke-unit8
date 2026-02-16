@@ -29,6 +29,31 @@
         <button>Get Started</button>
     </section>
 
+    <section class="match-section">
+        <h2>Find My Match</h2>
+
+        <div class="match-form">
+            <label>
+                Category:
+                <select id="match-category">
+                    <option value="all">All</option>
+                    <option value="programming">Programming</option>
+                    <option value="music">Music</option>
+                    <option value="career">Career</option>
+                </select>
+            </label>
+
+            <label>
+                Max Price ($/hr):
+                <input type="number" id="match-price" placeholder="Enter max price" />
+            </label>
+
+            <button id="match-btn">Find Matches</button>
+        </div>
+
+        <div id="match-results" class="match-results"></div>
+    </section>
+
     <section class="skills">
         <h2>Available Tutoring Skills</h2>
 

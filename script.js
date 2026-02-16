@@ -47,4 +47,64 @@ document.addEventListener("DOMContentLoaded", () => {
         const total = calculateTotalCost(rate, hours);
         resultDisplay.textContent = `Total: $${total.toFixed(2)}`;
     });
+
+
+
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Find My Match logic
+    const matchCategory = document.getElementById("match-category");
+    const matchPrice = document.getElementById("match-price");
+    const matchBtn = document.getElementById("match-btn");
+    const matchResults = document.getElementById("match-results");
+
+// Build skill data from cards
+    const cards = document.querySelectorAll(".skill-card");
+    const skills = Array.from(cards).map(card => ({
+        title: card.querySelector("h3").textContent,
+        price: parseFloat(
+            card.querySelector(".price").textContent.replace(/[^0-9.]/g, "")
+        ),
+        provider: card.querySelector(".provider").textContent,
+        contact: card.querySelector(".contact").textContent,
+        category: card.dataset.category
+    }));
+
+    matchBtn.addEventListener("click", () => {
+        const category = matchCategory.value;
+        const maxPrice = parseFloat(matchPrice.value);
+
+        // Build userNeeds object (required structure)
+        const userNeeds = {
+            category: category,
+            maxPrice: maxPrice
+        };
+
+        // Call your function correctly
+        const matches = matchSkillsToUser(userNeeds, skills);
+
+        // Clear results
+        matchResults.innerHTML = "";
+
+        if (matches.length === 0) {
+            matchResults.innerHTML = "<p>No matches found.</p>";
+            return;
+        }
+
+        // Display matches
+        matches.forEach(skill => {
+            const div = document.createElement("div");
+            div.classList.add("match-item");
+
+            div.innerHTML = `
+            <strong>${skill.title}</strong><br>
+            $${skill.price}/hr<br>
+            ${skill.provider}<br>
+            ${skill.contact}
+        `;
+
+            matchResults.appendChild(div);
+        });
+    });
+})
