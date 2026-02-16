@@ -1,6 +1,7 @@
 const { filterSkillsByCategory } = require("../skillswap-functions.js");
 
-const {calculateTotalCost} = require("../skillswap-functions");
+const {calculateTotalCost, matchSkillsToUser} = require("../skillswap-functions");
+const test = require("node:test");
 
 
 const skills = [
@@ -52,6 +53,43 @@ describe('Calculate cost tests', () => {
     test("Test with zero hours", () => {
         expect(calculateTotalCost(20, 0)).toEqual(0)
     })
+
+})
+
+describe('Match skill tests', () => {
+
+    test("Test with 30 max price", () => {
+        const user1Needs = { category: 'Programming', maxPrice: 30 };
+        const result = matchSkillsToUser(user1Needs, skills);
+        const val =
+            [
+                { title: 'Python Tutoring', category: 'Programming', price: 20 },
+                { title: 'JavaScript Help', category: 'Programming', price: 25 }
+            ]
+        expect(result).toEqual(val)
+    })
+    test("Test with 20 max price", () => {
+        const user2Needs = { category: 'Programming', maxPrice: 20 };
+        const result = matchSkillsToUser(user2Needs, skills);
+        const val = [ { title: 'Python Tutoring', category: 'Programming', price: 20 }]
+        expect(result).toEqual(val)
+
+    })
+    test("Test with empty array", () => {
+        const user3Needs = { category: 'Cooking', maxPrice: 100 };
+        const result = matchSkillsToUser(user3Needs, skills);
+        const val = []
+        expect(result).toEqual(val)
+    })
+    test("Test with free price", () => {
+        const user4Needs = { category: 'Career', maxPrice: 0 };
+        const result = matchSkillsToUser(user4Needs, skills);
+        const val = [ { title: 'Resume Review', category: 'Career', price: 0 } ]
+        expect(result).toEqual(val)
+
+    })
+
+
 
 })
 
