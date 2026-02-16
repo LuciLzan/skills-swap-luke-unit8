@@ -1,17 +1,17 @@
 const { filterSkillsByCategory } = require("../skillswap-functions.js");
 
 const {calculateTotalCost, matchSkillsToUser} = require("../skillswap-functions");
-const test = require("node:test");
 
 
-const skills = [
-    { title: 'Python Tutoring', category: 'Programming', price: 20 },
-    { title: 'Guitar Lessons', category: 'Music', price: 15 },
-    { title: 'Resume Review', category: 'Career', price: 0 },
-    { title: 'Web Development', category: 'Programming', price: 25 }
-];
+
 
 describe('Filter skills tests by category tests', () => {
+    const skills = [
+        { title: 'Python Tutoring', category: 'Programming', price: 20 },
+        { title: 'Guitar Lessons', category: 'Music', price: 15 },
+        { title: 'Resume Review', category: 'Career', price: 0 },
+        { title: 'Web Development', category: 'Programming', price: 25 }
+    ];
     test("Test with category 'Programming'", () => {
         let res = filterSkillsByCategory(skills, 'Programming');
         expect(res).toEqual([
@@ -58,6 +58,12 @@ describe('Calculate cost tests', () => {
 
 describe('Match skill tests', () => {
 
+    const skills = [
+        { title: 'Python Tutoring', category: 'Programming', price: 20 },
+        { title: 'JavaScript Help', category: 'Programming', price: 25 },
+        { title: 'Guitar Lessons', category: 'Music', price: 15 },
+        { title: 'Resume Review', category: 'Career', price: 0 }
+    ];
     test("Test with 30 max price", () => {
         const user1Needs = { category: 'Programming', maxPrice: 30 };
         const result = matchSkillsToUser(user1Needs, skills);
